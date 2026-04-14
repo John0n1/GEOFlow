@@ -64,10 +64,10 @@ Phase 1 does not change the existing main operational model:
 
 Related core files:
 
-- `/Users/laoyao/AI Coding/01-Projects/Active/GEO官网系统/bin/cron.php`
-- `/Users/laoyao/AI Coding/01-Projects/Active/GEO官网系统/bin/worker.php`
-- `/Users/laoyao/AI Coding/01-Projects/Active/GEO官网系统/includes/job_queue_service.php`
-- `/Users/laoyao/AI Coding/01-Projects/Active/GEO官网系统/includes/ai_engine.php`
+- `bin/cron.php`
+- `bin/worker.php`
+- `includes/job_queue_service.php`
+- `includes/ai_engine.php`
 
 ### 3.2 Do Not Override Existing Database Semantics
 
