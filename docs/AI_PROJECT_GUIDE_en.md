@@ -14,7 +14,7 @@ This is an **AI-driven automated content generation and publishing platform**, p
 ### Tech Stack Quick Reference
 ```
 Backend: PHP 7.4+ (no framework, native development)
-Database: SQLite (file database /data/db/blog.db)
+Database: PostgreSQL (runtime database, configured via environment variables)
 Frontend: TailwindCSS + vanilla JavaScript + Lucide Icons
 Server: PHP built-in development server (localhost:8080)
 AI Integration: Tu-zi API (Tuzi API) - OpenAI-compatible interface
@@ -22,7 +22,7 @@ AI Integration: Tu-zi API (Tuzi API) - OpenAI-compatible interface
 
 ### Project Features
 - ✅ No complex dependencies required, works out of the box
-- ✅ Single-file database, easy to backup and migrate
+- ✅ PostgreSQL runtime database with robust backup and migration support
 - ✅ Complete admin management system
 - ✅ Supports batch AI content generation
 - ✅ Process-level task management and monitoring
@@ -67,7 +67,7 @@ GEO Website System/
 ├── router.php                    # URL routing (development environment)
 ├── install.php                   # Installation script
 │
-├── /data/db/blog.db             # SQLite database file
+├── /data/db/blog.db             # Legacy SQLite database (migration-only)
 ├── /logs/                        # Log directory
 │   ├── batch_*.log              # Batch execution logs
 │   ├── batch_*.pid              # Process PID files
@@ -338,8 +338,9 @@ Note:
 
 ### 1. Environment Configuration (includes/config.php)
 ```php
-// Database path
-define('DB_PATH', __DIR__ . '/../data/db/blog.db');
+// PostgreSQL connection (configured via environment variables: DB_HOST, DB_NAME, DB_USER, DB_PASSWORD)
+// Legacy SQLite path, used only for migration and compatibility scripts
+define('DB_PATH', db_get_sqlite_path());
 
 // Default admin account
 define('ADMIN_USERNAME', 'admin');
@@ -503,11 +504,11 @@ Troubleshooting Steps:
 ### Security Notes
 1. ⚠️ Change the admin password immediately after first use
 2. ⚠️ Must change SECRET_KEY in production environment
-3. ⚠️ Regularly back up the database file /data/db/blog.db
+3. ⚠️ Regularly back up the PostgreSQL database (e.g., using `pg_dump`)
 4. ⚠️ Do not use PHP's built-in server in production
 
 ### Performance Notes
-1. SQLite is suitable for small to medium projects (<100,000 articles)
+1. PostgreSQL is the runtime database and scales well for production workloads
 2. Pay attention to publish_interval settings during batch execution (avoid API rate limiting)
 3. Regularly clean up log files
 4. External CDN is recommended for images
@@ -529,7 +530,7 @@ Troubleshooting Steps:
 
 ### Technical Documentation
 - PHP PDO: https://www.php.net/manual/zh/book.pdo.php
-- SQLite: https://www.sqlite.org/docs.html
+- PostgreSQL: https://www.postgresql.org/docs/
 - TailwindCSS: https://tailwindcss.com/docs
 
 ---
