@@ -505,8 +505,8 @@ docker ps --filter "name=worker"
 Troubleshooting Steps:
 1. Check if task status is 'active'
 2. Check for orphaned processes: Admin Panel → System Diagnostics
-3. View logs: logs/batch_{task_id}.log
-4. Manual cleanup: Delete logs/batch_{task_id}.pid
+3. View logs: logs/batch_{task_id}.log and worker-related logs
+4. Check `job_queue` and `worker_heartbeats` for stalled jobs or stale workers; if needed, restart `bin/worker.php` (or the worker container)
 ```
 
 ### Issue 2: AI Generation Failure
