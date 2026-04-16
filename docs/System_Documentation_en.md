@@ -57,7 +57,7 @@ GEOFlow/
 │   ├── start_task_batch.php   # Batch execution launcher (enqueues jobs via JobQueueService)
 │   └── includes/              # Admin-specific include files
 │
-├── /includes/                 # Core system files (19 files)
+├── /includes/                 # Core system files
 │   ├── config.php             # Configuration file - site settings, constant definitions
 │   ├── database.php           # Database class (singleton pattern)
 │   ├── database_new.php       # Alternative database implementation
