@@ -373,8 +373,12 @@ psql -h 127.0.0.1 -U geo_user -d geo_system -c \
 # 3. Check session directory
 php -r "echo session_save_path();"
 
-# 3. Clear sessions
-rm -rf /tmp/sess_*
+# 4. Clear sessions only after confirming the directory is dedicated to this app
+SESSION_DIR=$(php -r 'echo session_save_path() ?: sys_get_temp_dir();')
+echo "Review session directory before deleting anything: $SESSION_DIR"
+# Example: remove only PHP session files from the configured session directory
+# WARNING: run this only if SESSION_DIR is used exclusively by this application
+rm -f "${SESSION_DIR%/}"/sess_*
 ```
 
 ### Issue 5: AI Features Not Working
